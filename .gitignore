@@ -1,0 +1,14 @@
+__MACOSX
+**.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+.npmrc
+._*
+*.un~
+*.log
+package-lock.json
+yarn.lock
+composer.lock
+node_modules/
+vendor/
