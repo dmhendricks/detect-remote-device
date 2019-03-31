@@ -23,8 +23,8 @@ If you're not sure if you meet these requirements, the plugin will tell you upon
 - [ ] Add shortcodes
 - [x] Add device body classes
 - [ ] Add all configuration constants
-- [ ] Add translation file
-- [ ] Modify [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) to return false if tablet
+- [x] Add translation file
+- [ ] Modify [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) to return false if tablet, if enabled
 - [ ] Add OS-specific global functions and shortcodes (tentative)
 
 ### Installation

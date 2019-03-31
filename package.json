@@ -5,12 +5,12 @@
   "license": "GPL-2.0-or-later",
   "private": true,
   "scripts": {
-    "translate": "wp-pot -s './app/**/*.php' -o ./languages/$npm_package_name.pot -p $npm_package_name",
+    "translate": "wp-pot --src 'app/**/*.php' --dest-file ./languages/$npm_package_name.pot --package $npm_package_name --team 'Daniel M. Hendricks' --last-translator 'Daniel M. Hendricks'",
     "zip": "zip -q -r ../$npm_package_name-$npm_package_version.zip * -x 'node_modules/*' 'assets/*' '.git*' './src/*' './.*' './package*.*' './composer.*' './*.md' './*.log' '*.bak' ",
     "zip-dev": "zip -q -r ../$npm_package_name-$npm_package_version-dev.zip * -x 'node_modules/*' '.git*' './*.log' '.DS_Store' '*.bak' "
   },
   "devDependencies": {
-    "wp-pot-cli": "1.0.3"
+    "wp-pot-cli": "^1.2.3"
   },
   "dependencies": {},
   "repository": {
