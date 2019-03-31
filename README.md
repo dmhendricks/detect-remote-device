@@ -21,10 +21,11 @@ If you're not sure if you meet these requirements, the plugin will tell you upon
 
 - [x] Add global functions
 - [ ] Add shortcodes
-- [ ] Add device body classes
-- [ ] Add configuration constants
+- [x] Add device body classes
+- [ ] Add all configuration constants
 - [ ] Add translation file
-- [ ] Add OS-specific global functions and shortcodes
+- [ ] Modify [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) to return false if tablet
+- [ ] Add OS-specific global functions and shortcodes (tentative)
 
 ### Installation
 
@@ -56,9 +57,9 @@ If desired, you can simply instantiate a new instance of [MobileDetect](http://m
 ```php
 $device = new \Mobile_Detect();
 
-if( $detect->isTablet() ) {
+if( $device->isTablet() ) {
 	// Logic for tablets
-} else if( $detect->isMobile() ) {
+} else if( $device->isMobile() ) {
 	// Logic for phones
 } else {
 	// Logic for desktop
