@@ -23,7 +23,17 @@ If you're not sure if you meet these requirements, the plugin will tell you upon
 
 ### Configuration
 
-TODO
+The following constants are available to modify behavior. They may be defined in your `wp-config.php`:
+
+- `DMD_DISABLE_GLOBAL_FUNCTIONS` - If defined as true, global functions will not be created.
+- `DMD_DISABLE_SHORTCODES` - If defined as true, shortcodes will not be loaded. Useful if you only want this plugin to solely act as an autoloader for the [MobileDetect](http://mobiledetect.net/) PHP library.
+
+##### Example Usage
+
+```php
+define( 'DMD_DISABLE_GLOBAL_FUNCTIONS', true );
+define( 'DMD_DISABLE_SHORTCODES', true );
+```
 
 ## Usage
 
@@ -36,7 +46,7 @@ $device = new \Mobile_Detect();
 
 if ( $detect->isTablet() ) {
 	// Logic for tablets
-} elae if( $detect->isMobile() ){
+} else if( $detect->isMobile() ){
 	// Logic for phones
 } else {
 	// Logic for desktop
@@ -56,12 +66,14 @@ if( wp_is_mobile() ) {
 }
 
 // Perform logic based on device type
-if( wp_is_phone() ) {
+if( device_is_phone() ) {
 	// ... Phones only
-} elae if( wp_is_tablet() ) {
+} else if( device_is_tablet() ) {
 	// ... Tablets only
+} else if( device_is_desktop() ) {
+	// ... Desktop only
 } else {
-	// ... Desktop default
+    // ...
 }
 ```
 
@@ -75,5 +87,6 @@ This plugin adds the following shortcodes:
 - `[device_is_desktop]` - Display content if **desktop**
 - `[device_is type="tablet,phone"]` - Display content if `type` attribute matches. Multiple types may be separated by comma.
 - `[device_is_not type="desktop"]` - Display content if `type` attribute **does not** match. Multiple types may be separated by comma.
+- **More to come!**
 
-:ok_hand: I realize that these can be consolidated into one shortcode, but I split them out to simplify semantics for the user. Use them as you wish.
+:ok_hand: I realize that these can be consolidated into one shortcode, but I split them out for user semantics. Use them as you wish.
