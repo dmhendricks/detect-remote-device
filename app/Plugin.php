@@ -28,9 +28,6 @@ class Plugin {
       // Define plugin version
       if ( !defined( __CLASS__ . '\VERSION' ) ) define( __CLASS__ . '\VERSION', self::$version );
 
-      // Discontinue if doing cron
-      if( wp_doing_cron() ) self::$instance;
-
       // Set and load text domain
       self::$textdomain = self::$config['plugin']['textdomain'];
       add_action( 'init', array( self::$instance, 'plugin_load_textdomain' ) );
@@ -120,8 +117,10 @@ class Plugin {
    * @since 1.0.0
    */
   public function prefix( $field_name = null, $before = '', $after = '_' ) {
+
     $prefix = $before . self::$config['prefix'] . $after;
     return $field_name !== null ? $prefix . $field_name : $prefix;
+
   }
 
   /**
@@ -146,6 +145,7 @@ class Plugin {
 
     // Add additional string translations
     $plugin_data['translated_strings'] = [
+      __( 'Detect Mobile Device', self::$textdomain ),
       __( 'Adds additional functions and shortcodes to modify output by device type - mobile, tablet or desktop.', self::$textdomain )
     ];
 

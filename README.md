@@ -17,6 +17,14 @@ This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP l
 
 If you're not sure if you meet these requirements, the plugin will tell you upon activation.
 
+### TODO
+
+- [ ] Add global functions
+- [ ] Add shortcodes
+- [ ] Add device body classes
+- [ ] Add configuration constants
+- [ ] Add translation file
+
 ### Installation
 
 **TODO:** Download the release ZIP file (once available) and install as you normally would via the WP Admin plugins page.
@@ -27,12 +35,17 @@ The following constants are available to modify behavior. They may be defined in
 
 - `DMD_DISABLE_GLOBAL_FUNCTIONS` - If defined as true, global functions will not be created.
 - `DMD_DISABLE_SHORTCODES` - If defined as true, shortcodes will not be loaded. Useful if you only want this plugin to solely act as an autoloader for the [MobileDetect](http://mobiledetect.net/) PHP library.
+- `DMD_BODY_CLASS_PREFIX` - If defined as string, modifies the prefix added to device body classes. If false, disables addition of body classes. Defaults to `device`.
+- `DMD_MODIFY_WP_IS_MOBILE` - Modifies WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function to return false for tablets.
+- `DBD_GLOBAL_FUNCTION_PREFIX` - To avoid conflicts, you can add a prefix to the [global functions](#option-2---use-global-functions). Defaults to empty. Value must adhere to [valid PHP function name conventions](https://www.php.net/manual/en/functions.user-defined.php)!
 
 #### Example Usage
 
 ```php
 define( 'DMD_DISABLE_GLOBAL_FUNCTIONS', true );
-define( 'DMD_DISABLE_SHORTCODES', true );
+define( 'DMD_BODY_CLASS_PREFIX', 'remote' ); // Resulting body classes: remote-mobile, remote-desktop, etc
+define( 'DMD_MODIFY_WP_IS_MOBILE', true );
+define( 'DBD_GLOBAL_FUNCTION_PREFIX', 'myprefix' ); // Resulting function: myprefix_device_is_phone()
 ```
 
 ## Usage
@@ -44,9 +57,9 @@ If desired, you can simply instantiate a new instance of [MobileDetect](http://m
 ```php
 $device = new \Mobile_Detect();
 
-if ( $detect->isTablet() ) {
+if( $detect->isTablet() ) {
 	// Logic for tablets
-} else if( $detect->isMobile() ){
+} else if( $detect->isMobile() ) {
 	// Logic for phones
 } else {
 	// Logic for desktop
@@ -57,7 +70,7 @@ if ( $detect->isTablet() ) {
 
 ### Option 2 - Use Global Functions
 
-In addition to WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function (which returns true for phone _and_ tablet), this function adds `wp_is_phone()` and `wp_is_tablet()`.
+To supplement WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function (which returns true for phone _and_ tablet), this plugin adds functions to specifically detect phones and tablets:
 
 ```php
 // Built-in WordPress function: Do something for phones AND tablets

@@ -5,12 +5,16 @@
  * Plugin URI:        https://github.com/dmhendricks/detect-mobile-device
  * Description:       Adds additional functions and shortcodes to modify output by device type - mobile, tablet or desktop.
  * Version:           0.1.0
+ * Stable tag:        1.0.0
+ * Requires at least: 4.7
+ * Requires PHP:      5.6
+ * Tested up to:      5.1.1
  * Author:            Daniel M. Hendricks
  * Author URI:        https://daniel.hn
  * License:           GPL-2.0
  * License URI:       https://opensource.org/licenses/GPL-2.0
  * Text Domain:       detect-mobile-device
- * Domain Path:       languages
+ * Domain Path:       /languages
  * GitHub Plugin URI: dmhendricks/detect-mobile-device
  */
 ABSPATH || die();
