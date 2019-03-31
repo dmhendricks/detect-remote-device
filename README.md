@@ -44,6 +44,7 @@ The following constants are available to modify behavior. They may be defined in
 
 ```php
 define( 'DMD_DISABLE_GLOBAL_FUNCTIONS', true );
+define( 'DMD_DISABLE_SHORTCODES', false );
 define( 'DMD_BODY_CLASS_PREFIX', 'remote' ); // Resulting body classes: remote-mobile, remote-desktop, etc
 define( 'DMD_MODIFY_WP_IS_MOBILE', true );
 ```
@@ -78,7 +79,7 @@ if( wp_is_mobile() ) {
 	// ...
 }
 
-// Perform logic based on device type
+// Custom global functions
 if( device_is_phone() ) {
 	// ... Phones only
 } else if( device_is_tablet() ) {
@@ -88,6 +89,9 @@ if( device_is_phone() ) {
 } else {
     // ...
 }
+
+// Get device type as string
+echo 'Device type: ' . get_the_device_type(); // Device type: tablet
 ```
 
 ### Option 3 - Use Shortcodes

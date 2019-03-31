@@ -96,4 +96,22 @@ if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS
 
   }
 
+  // Add get_the_device_type() function
+  if( !function_exists( 'get_the_device_type' ) ) {
+
+    function get_the_device_type() {
+
+      switch( true ) {
+        case device_is_tablet():
+          return 'tablet';
+        case device_is_phone():
+          return 'phone';
+        default:
+          return 'desktop';
+      }
+
+    }
+
+  }
+
 }
