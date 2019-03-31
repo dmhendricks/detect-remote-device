@@ -15,6 +15,15 @@ final class Core extends Plugin {
       if( !( defined( 'DMD_BODY_CLASS_PREFIX' ) && DMD_BODY_CLASS_PREFIX === false ) )
         add_filter( 'body_class', array( self::$class, 'device_body_classes' ) );
 
+      // Modify wp_is_mobile() to return false for tablets
+      if( defined( 'DMD_MODIFY_WP_IS_MOBILE' ) && DMD_MODIFY_WP_IS_MOBILE ) {
+
+        $device = new \Mobile_Detect;
+        $is_phone = $device->isMobile() && !$device->isTablet();
+        add_filter( 'wp_is_mobile', $is_phone ? '__return_true' : '__return_false' );
+
+      }
+
     }
 
     return self::$class;

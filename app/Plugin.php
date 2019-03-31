@@ -36,7 +36,7 @@ class Plugin {
       register_activation_hook( self::$config['plugin']['identifier'], array( self::$instance, 'activate' ) );
 
       // Load dependecies and load plugin logic
-      add_action( 'plugins_loaded', array( self::$instance, 'load_plugin' ) );
+      add_action( 'init', array( self::$instance, 'load_plugin' ) );
 
     }
 
