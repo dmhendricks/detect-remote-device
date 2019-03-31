@@ -4,6 +4,28 @@ namespace CloudVerve\Detect_Mobile_Device;
 final class Helpers extends Plugin {
 
   /**
+   * Get the path of a file relative to plugin directory
+   * @return string Absolute file path of script
+   * @since 1.0.0
+   */
+  public static function get_script_dir( $filepath ) {
+
+    return self::$plugin_dir . DIRECTORY_SEPARATOR . $filepath;
+
+  }
+
+  /**
+   * Get the URL of a file relative to plugin URL
+   * @return string Full URI of script
+   * @since 1.0.0
+   */
+  public static function get_script_url( $filepath ) {
+
+    return self::$plugin_url . '/' . $filepath;
+
+  }
+
+  /**
    * Read JSON data from file
    * 
    * @param string $filepath Absolute path to JSON file

@@ -19,9 +19,60 @@
  */
 ABSPATH || die();
 
+/**
+ * Load dependencies
+ */
 if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
   require( __DIR__ . '/vendor/autoload.php' );
+} else {
+  return;
 }
 
-// Initialize plugin
+/**
+ * Initialize plugin
+ */
 \CloudVerve\Detect_Mobile_Device\Plugin::instance( __FILE__, dirname( __FILE__ ), plugin_dir_url( __FILE__ ) );
+
+/**
+ * Global Functions
+ */
+
+// Add device_is_mobile() function; similar to wp_is_mobile(), but uses Mobile_Detect class
+if( !function_exists( 'device_is_mobile' ) ) {
+
+  function device_is_mobile() {
+    $device = new \Mobile_Detect;
+    return $device->isMobile();
+  }
+
+}
+
+// Add device_is_phone() function
+if( !function_exists( 'device_is_phone' ) ) {
+
+  function device_is_phone() {
+    $device = new \Mobile_Detect;
+    return $device->isMobile() && !$device->isTablet();
+  }
+
+}
+
+// Add device_is_tablet() function
+if( !function_exists( 'device_is_tablet' ) ) {
+
+  function device_is_tablet() {
+    $device = new \Mobile_Detect;
+    return $device->isTablet();
+  }
+
+}
+
+// Add device_is_desktop() function
+if( !function_exists( 'device_is_desktop' ) ) {
+
+  function device_is_desktop() {
+    $device = new \Mobile_Detect;
+    return !$device->isMobile();
+  }
+
+}
