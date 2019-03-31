@@ -8,7 +8,7 @@
 
 This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP library to extend `wp_is_mobile()` to exclude tablets and add device-specific filters and shortcodes. It was inspired by [Pothi Kalimuthu's](https://www.tinywp.in/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-mobile-device) [Mobile Detect](https://wordpress.org/plugins/tinywp-mobile-detect/) plugin.
 
-:bangbang: This is a work-in-progress. **This plugin _does not function_.**
+:bangbang: This is a work-in-progress. **Some features do not work, such as shortcodes.**
 
 ## Requirements
 
@@ -17,7 +17,7 @@ This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP l
 
 If you're not sure if you meet these requirements, the plugin will tell you upon activation.
 
-### TODO
+### Release TODO
 
 - [x] Add global functions
 - [ ] Add shortcodes
@@ -25,7 +25,12 @@ If you're not sure if you meet these requirements, the plugin will tell you upon
 - [ ] Add all configuration constants
 - [x] Add translation file
 - [x] Modify [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) to return false if tablet, if enabled
+
+### Future Plans
+
 - [ ] Add OS-specific global functions and shortcodes
+- [ ] Add support for [mobile-detect.js](https://github.com/hgoebl/mobile-detect.js)
+- [ ] Add additional conditionals based on user agent ([examples](https://github.com/quentin389/UserAgentInfo#usage))
 
 ### Installation
 
