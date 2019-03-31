@@ -54,42 +54,46 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
  * Global Functions
  */
 
-// Add device_is_mobile() function; similar to wp_is_mobile(), but uses Mobile_Detect class
-if( !function_exists( 'device_is_mobile' ) ) {
+if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS ) ) {
 
-  function device_is_mobile() {
-    $device = new \Mobile_Detect;
-    return $device->isMobile();
+  // Add device_is_mobile() function; similar to wp_is_mobile(), but uses Mobile_Detect class
+  if( !function_exists( 'device_is_mobile' ) ) {
+
+    function device_is_mobile() {
+      $device = new \Mobile_Detect;
+      return $device->isMobile();
+    }
+
   }
 
-}
+  // Add device_is_phone() function
+  if( !function_exists( 'device_is_phone' ) ) {
 
-// Add device_is_phone() function
-if( !function_exists( 'device_is_phone' ) ) {
+    function device_is_phone() {
+      $device = new \Mobile_Detect;
+      return $device->isMobile() && !$device->isTablet();
+    }
 
-  function device_is_phone() {
-    $device = new \Mobile_Detect;
-    return $device->isMobile() && !$device->isTablet();
   }
 
-}
+  // Add device_is_tablet() function
+  if( !function_exists( 'device_is_tablet' ) ) {
 
-// Add device_is_tablet() function
-if( !function_exists( 'device_is_tablet' ) ) {
+    function device_is_tablet() {
+      $device = new \Mobile_Detect;
+      return $device->isTablet();
+    }
 
-  function device_is_tablet() {
-    $device = new \Mobile_Detect;
-    return $device->isTablet();
   }
 
-}
+  // Add device_is_desktop() function
+  if( !function_exists( 'device_is_desktop' ) ) {
 
-// Add device_is_desktop() function
-if( !function_exists( 'device_is_desktop' ) ) {
+    function device_is_desktop() {
+      $device = new \Mobile_Detect;
+      return !$device->isMobile();
+    }
 
-  function device_is_desktop() {
-    $device = new \Mobile_Detect;
-    return !$device->isMobile();
   }
 
 }
