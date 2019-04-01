@@ -57,6 +57,9 @@ class Plugin {
     // Load core plugin logic
     Core::init();
 
+    // Load shortcodes
+    Shortcodes\Shortcode_Loader::init();
+
   }
 
   /**

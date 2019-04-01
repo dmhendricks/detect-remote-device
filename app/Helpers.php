@@ -40,4 +40,25 @@ final class Helpers extends Plugin {
 
   }
 
+  /**
+   * Return the device type
+   *
+   * @return string Device type
+   * @since 1.0.0
+   */
+  public static function get_remote_device_type() {
+
+    $device = new \Mobile_Detect;
+
+    switch( true ) {
+      case $device->isTablet():
+        return 'tablet';
+      case $device->isMobile() && !$device->isTablet():
+        return 'phone';
+      default:
+        return 'desktop';
+    }
+
+  }
+
 }

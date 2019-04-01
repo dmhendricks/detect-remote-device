@@ -8,8 +8,6 @@
 
 This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP library to extend `wp_is_mobile()` to exclude tablets and add device-specific filters and shortcodes. It was inspired by [Pothi Kalimuthu's](https://www.tinywp.in/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-mobile-device) [Mobile Detect](https://wordpress.org/plugins/tinywp-mobile-detect/) plugin.
 
-:bangbang: This is a work-in-progress. **Some features do not work, such as shortcodes.**
-
 ## Requirements
 
 - WordPress 4.7 or higher
@@ -17,30 +15,21 @@ This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP l
 
 If you're not sure if you meet these requirements, the plugin will tell you upon activation.
 
-### Release TODO
-
-- [x] Add global functions
-- [ ] Add shortcodes
-- [x] Add device body classes
-- [ ] Add all configuration constants
-- [x] Add translation file
-- [x] Modify [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) to return false if tablet, if enabled
-
 ### Future Plans
 
-- [ ] Add OS-specific global functions and shortcodes
+- [ ] Add [OS-specific](https://github.com/matomo-org/device-detector) [detection](https://github.com/jenssegers/agent)
 - [ ] Add support for [mobile-detect.js](https://github.com/hgoebl/mobile-detect.js)
 - [ ] Add additional conditionals based on user agent ([examples](https://github.com/quentin389/UserAgentInfo#usage))
 
 ### Installation
 
-**TODO:** Download the release ZIP file (once available) and install as you normally would via the WP Admin plugins page.
+:bangbang: Until I create a release, the only way to use this plugin is to clone it and run `composer install`.
 
 ### Configuration
 
 The following constants are available to modify behavior. They may be defined in your `wp-config.php`:
 
-- `DMD_DISABLE_GLOBAL_FUNCTIONS` - If defined as true, global functions will not be created.
+- `DMD_DISABLE_GLOBAL_FUNCTIONS` - If defined as true, [global functions](#option-2---global-functions) will not be created.
 - `DMD_DISABLE_SHORTCODES` - If defined as true, shortcodes will not be loaded. Useful if you only want this plugin to solely act as an autoloader for the [MobileDetect](http://mobiledetect.net/) PHP library.
 - `DMD_BODY_CLASS_PREFIX` - If defined as string, modifies the prefix added to device body classes. If false, disables addition of body classes. Defaults to `device`.
 - `DMD_MODIFY_WP_IS_MOBILE` - Modifies WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function to return false for tablets.
@@ -50,7 +39,7 @@ The following constants are available to modify behavior. They may be defined in
 ```php
 define( 'DMD_DISABLE_GLOBAL_FUNCTIONS', true );
 define( 'DMD_DISABLE_SHORTCODES', false );
-define( 'DMD_BODY_CLASS_PREFIX', 'remote' ); // Resulting body classes: remote-mobile, remote-desktop, etc
+define( 'DMD_BODY_CLASS_PREFIX', 'screen' ); // Resulting body classes: screen-mobile, screen-desktop, etc
 define( 'DMD_MODIFY_WP_IS_MOBILE', true );
 ```
 
@@ -74,7 +63,7 @@ if( $device->isTablet() ) {
 
 :rotating_light: **NB!** The `isMobile` method returns true for both phones _and_ tablets. In my example above, I check for tablets first, else if not tablet but is mobile, it is a phone. Adjust your logic as desired.
 
-### Option 2 - Use Global Functions
+### Option 2 - Global Functions
 
 To supplement WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function (which returns true for phone _and_ tablet), this plugin adds functions to specifically detect phones and tablets:
 
