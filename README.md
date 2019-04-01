@@ -20,6 +20,7 @@ If you're not sure if you meet these requirements, the plugin will tell you upon
 - [ ] Add [OS-specific](https://github.com/matomo-org/device-detector) [detection](https://github.com/jenssegers/agent)
 - [ ] Add support for [mobile-detect.js](https://github.com/hgoebl/mobile-detect.js)
 - [ ] Add additional conditionals based on user agent ([examples](https://github.com/quentin389/UserAgentInfo#usage))
+- [ ] Add `[get_device_type]` shortcode
 
 ### Installation
 
@@ -101,3 +102,13 @@ This plugin adds the following shortcodes:
 - **More to come!**
 
 :ok_hand: I realize that these can be consolidated into one shortcode, but I split them out for user semantics. Use them as you wish.
+
+#### Example Shortcode Usage
+
+```
+[device_is_phone]You're using a phone![/device_is_phone]
+
+[device_is type="tablet,desktop"]You're using a tablet or desktop![/device_is]
+
+[device_is_not type="phone"]You're NOT using a phone![/device_is_not]
+```
