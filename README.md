@@ -15,12 +15,16 @@ This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP l
 
 If you're not sure if you meet these requirements, the plugin will tell you upon activation.
 
-### Future Plans
+#### Goals for Release 0.2.0
 
-- [ ] Add [OS-specific](https://github.com/matomo-org/device-detector) [detection](https://github.com/jenssegers/agent)
-- [ ] Add support for [mobile-detect.js](https://github.com/hgoebl/mobile-detect.js)
-- [ ] Add additional conditionals based on user agent ([examples](https://github.com/quentin389/UserAgentInfo#usage))
+- [ ] Switch to [jenssegers/agent](https://github.com/jenssegers/agent)
 - [ ] Add `[get_device_type]` shortcode
+- [ ] Add [OS-specific detection](https://github.com/jenssegers/agent)
+- [ ] Add additional conditionals based on user agent ([examples](https://github.com/quentin389/UserAgentInfo#usage))
+
+#### Future Ideas
+
+- [ ] Add support for [mobile-detect.js](https://github.com/hgoebl/mobile-detect.js)
 
 ### Installation
 
@@ -35,7 +39,7 @@ The following constants are available to modify behavior. They may be defined in
 - `DMD_BODY_CLASS_PREFIX` - If defined as string, modifies the prefix added to device body classes. If false, disables addition of body classes. Defaults to `device`.
 - `DMD_MODIFY_WP_IS_MOBILE` - Modifies WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function to return false for tablets.
 
-#### Example Usage
+#### Configuration Examples
 
 ```php
 define( 'DMD_DISABLE_GLOBAL_FUNCTIONS', true );
