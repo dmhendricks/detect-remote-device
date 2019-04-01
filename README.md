@@ -23,7 +23,7 @@ If you're not sure if you meet these requirements, the plugin will tell you upon
 
 ### Installation
 
-:bangbang: Until I create a **release**, the only way to use this plugin is to clone it and run `composer install`.
+Download the distributable ZIP file from the [Releases](https://github.com/dmhendricks/detect-mobile-device/releases) page and install as you normally do for a WordPress plugin.
 
 ### Configuration
 
