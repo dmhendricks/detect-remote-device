@@ -23,7 +23,7 @@ If you're not sure if you meet these requirements, the plugin will tell you upon
 
 ### Installation
 
-:bangbang: Until I create a release, the only way to use this plugin is to clone it and run `composer install`.
+:bangbang: Until I create a **release**, the only way to use this plugin is to clone it and run `composer install`.
 
 ### Configuration
 

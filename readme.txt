@@ -25,16 +25,16 @@ Install as you traditionally would with any WordPress plugin.
 
 == Frequently Asked Questions ==
 
-= Are there any configuration options available? =
+= What configuration options available? =
 
-Currently, there are no configuration options. This is on the TODO list.
+See [Configuration](https://github.com/dmhendricks/detect-mobile-device#configuration).
 
 == Screenshots ==
 
 == Upgrade Notice ==
-n/a
+Until it is added to WordPress.org, this plugin may be updated vi [GitHub Updater](https://github.com/afragen/github-updater).
 
 == Changelog ==
 
-= 1.0.0 =
-* TODO: Initial release
+= 0.1.0 =
+* Initial alpha release
