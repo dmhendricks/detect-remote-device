@@ -11,4 +11,3 @@ package-lock.json
 yarn.lock
 composer.lock
 node_modules/
-vendor/
