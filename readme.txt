@@ -25,7 +25,11 @@ Install as you traditionally would with any WordPress plugin.
 
 = What configuration options available? =
 
+<<<<<<< HEAD
 See [Configuration](https://github.com/dmhendricks/detect-remote-device#configuration).
+=======
+See [Configuration](https://github.com/dmhendricks/detect-mobile-device#configuration).
+>>>>>>> 7660539c556a9b194d25be0abf8fd39e5757868d
 
 == Screenshots ==
 
