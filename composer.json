@@ -1,9 +1,9 @@
 {
-    "name": "dmhendricks/wordpress-detect-mobile-device-plugin",
+    "name": "dmhendricks/wordpress-detect-remote-device-plugin",
     "type": "wordpress-plugin",
     "description": "Detect if device is mobile or tablet, with filters and shortcode support.",
     "keywords": [ "wordpress", "plugin", "detect", "mobile", "device", "shortcode" ],
-    "homepage": "https://github.com/dmhendricks/detect-mobile-device/",
+    "homepage": "https://github.com/dmhendricks/detect-remote-device/",
     "license": "GPL-2.0-or-later",
     "authors": [
       {
@@ -13,18 +13,19 @@
       }
     ],
     "support": {
-      "issues": "https://github.com/dmhendricks/detect-mobile-device/issues/",
-      "source": "https://github.com/dmhendricks/detect-mobile-device/"
+      "issues": "https://github.com/dmhendricks/detect-remote-device/issues/",
+      "source": "https://github.com/dmhendricks/detect-remote-device/"
     },
     "require": {
       "php": ">=5.6",
       "underdev/requirements": "^1.3",
       "mobiledetect/mobiledetectlib": "^2.8",
+      "jenssegers/agent": "^2.6",
       "composer/installers": "^1.0.6"
     },
     "autoload": {
       "psr-4": {
-        "CloudVerve\\Detect_Mobile_Device\\": "app/"
+        "CloudVerve\\Detect_Remote_Device\\": "app/"
       }
     },
     "scripts": {

@@ -1,5 +1,5 @@
 <?php
-namespace CloudVerve\Detect_Mobile_Device;
+namespace CloudVerve\Detect_Remote_Device;
 
 class Plugin {
 
@@ -28,9 +28,6 @@ class Plugin {
       // Define plugin version
       if ( !defined( __CLASS__ . '\VERSION' ) ) define( __CLASS__ . '\VERSION', self::$version );
 
-      // Discontinue if doing cron
-      if( wp_doing_cron() ) self::$instance;
-
       // Set and load text domain
       self::$textdomain = self::$config['plugin']['textdomain'];
       add_action( 'init', array( self::$instance, 'plugin_load_textdomain' ) );
@@ -39,7 +36,7 @@ class Plugin {
       register_activation_hook( self::$config['plugin']['identifier'], array( self::$instance, 'activate' ) );
 
       // Load dependecies and load plugin logic
-      add_action( 'plugins_loaded', array( self::$instance, 'load_plugin' ) );
+      add_action( 'init', array( self::$instance, 'load_plugin' ) );
 
     }
 
@@ -59,6 +56,9 @@ class Plugin {
 
     // Load core plugin logic
     Core::init();
+
+    // Load shortcodes
+    Shortcodes\Shortcode_Loader::init();
 
   }
 
@@ -120,8 +120,10 @@ class Plugin {
    * @since 1.0.0
    */
   public function prefix( $field_name = null, $before = '', $after = '_' ) {
+
     $prefix = $before . self::$config['prefix'] . $after;
     return $field_name !== null ? $prefix . $field_name : $prefix;
+
   }
 
   /**
@@ -146,6 +148,7 @@ class Plugin {
 
     // Add additional string translations
     $plugin_data['translated_strings'] = [
+      __( 'Detect Remote Device', self::$textdomain ),
       __( 'Adds additional functions and shortcodes to modify output by device type - mobile, tablet or desktop.', self::$textdomain )
     ];
 

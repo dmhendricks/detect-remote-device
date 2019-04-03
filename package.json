@@ -1,5 +1,5 @@
 {
-  "name": "detect-mobile-device",
+  "name": "detect-remote-device",
   "version": "0.1.0",
   "author": "Daniel M. Hendricks",
   "license": "GPL-2.0-or-later",
@@ -15,6 +15,6 @@
   "dependencies": {},
   "repository": {
     "type": "git",
-    "url": "git://github.com/dmhendricks/detect-mobile-device.git"
+    "url": "git://github.com/dmhendricks/detect-remote-device.git"
   }
 }

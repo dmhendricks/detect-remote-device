@@ -1,4 +1,4 @@
-=== Detect Mobile Device ===
+=== Detect Remote Device ===
 Contributors: hendridm
 Tags: detect, device, mobile, tablet, shortcode
 Donate link: https://paypal.me/danielhendricks
@@ -9,7 +9,7 @@ License: GPLv2
 Requires PHP: 5.6
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Adds additional functions and shortcodes to modify output by device type - mobile, tablet or desktop. Uses [MobileDetect](http://mobiledetect.net/) 
+Adds additional functions and shortcodes to modify output by device type - mobile, tablet or desktop. Uses the [jenssegers/agent](https://github.com/jenssegers/agent) 
 PHP library.
 
 == Description ==
@@ -17,24 +17,22 @@ PHP library.
 This plugin adds additional functions and shortcodes to modify output by device type - mobile, tablet or desktop. It was inspired by 
 [Pothi Kalimuthu's](https://www.tinywp.in/) [Mobile Detect](https://wordpress.org/plugins/tinywp-mobile-detect/) plugin.
 
-TODO
-
 == Installation ==
 
 Install as you traditionally would with any WordPress plugin.
 
 == Frequently Asked Questions ==
 
-= Are there any configuration options available? =
+= What configuration options available? =
 
-Currently, there are no configuration options. This is on the TODO list.
+See [Configuration](https://github.com/dmhendricks/detect-remote-device#configuration).
 
 == Screenshots ==
 
 == Upgrade Notice ==
-n/a
+Until it is added to WordPress.org, this plugin may be updated vi [GitHub Updater](https://github.com/afragen/github-updater).
 
 == Changelog ==
 
-= 1.0.0 =
-* TODO: Initial release
+= 0.1.0 =
+* Initial alpha release

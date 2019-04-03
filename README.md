@@ -1,14 +1,12 @@
-[![Author](https://img.shields.io/badge/author-Daniel%20M.%20Hendricks-lightgrey.svg?colorB=9900cc&style=flat-square)](https://daniel.hn/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-mobile-device)
-[![GitHub License](https://img.shields.io/badge/license-GPLv2-yellow.svg?style=flat-square)](https://raw.githubusercontent.com/dmhendricks/detect-mobile-device/master/LICENSE)
-[![Get Flywheel](https://img.shields.io/badge/hosting-Flywheel-green.svg?style=flat-square&label=compatible&colorB=AE2A21)](https://share.getf.ly/e25g6k?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=dmhendricks%2Fdetect-mobile-device)
-[![Analytics](https://ga-beacon.appspot.com/UA-126205765-1/dmhendricks/detect-mobile-device?flat)](https://ga-beacon.appspot.com/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=dmhendricks%2Fdetect-mobile-device)
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/dmhendricks/detect-mobile-device.svg?style=social)](https://twitter.com/danielhendricks)
+[![Author](https://img.shields.io/badge/author-Daniel%20M.%20Hendricks-lightgrey.svg?colorB=9900cc&style=flat-square)](https://daniel.hn/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-remote-device)
+[![GitHub License](https://img.shields.io/badge/license-GPLv2-yellow.svg?style=flat-square)](https://raw.githubusercontent.com/dmhendricks/detect-remote-device/master/LICENSE)
+[![Get Flywheel](https://img.shields.io/badge/hosting-Flywheel-green.svg?style=flat-square&label=compatible&colorB=AE2A21)](https://share.getf.ly/e25g6k?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=dmhendricks%2Fdetect-remote-device)
+[![Analytics](https://ga-beacon.appspot.com/UA-126205765-1/dmhendricks/detect-remote-device?flat)](https://ga-beacon.appspot.com/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=dmhendricks%2Fdetect-remote-device)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/dmhendricks/detect-remote-device.svg?style=social)](https://twitter.com/danielhendricks)
 
-# Detect Mobile Device Plugin for WordPress
+# Detect Remote Device Plugin for WordPress
 
-This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP library to extend `wp_is_mobile()` to exclude tablets and add device-specific filters and shortcodes. It was inspired by [Pothi Kalimuthu's](https://www.tinywp.in/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-mobile-device) [Mobile Detect](https://wordpress.org/plugins/tinywp-mobile-detect/) plugin.
-
-:bangbang: This is a work-in-progress. **This plugin _does not function_.**
+This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP library to extend `wp_is_mobile()` to exclude tablets and add device-specific filters and shortcodes. It was inspired by [Pothi Kalimuthu's](https://www.tinywp.in/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-remote-device) [Mobile Detect](https://wordpress.org/plugins/tinywp-mobile-detect/) plugin.
 
 ## Requirements
 
@@ -17,22 +15,32 @@ This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP l
 
 If you're not sure if you meet these requirements, the plugin will tell you upon activation.
 
+### Future Plans
+
+- [ ] Add [OS-specific](https://github.com/matomo-org/device-detector) [detection](https://github.com/jenssegers/agent)
+- [ ] Add support for [mobile-detect.js](https://github.com/hgoebl/mobile-detect.js)
+- [ ] Add additional conditionals based on user agent ([examples](https://github.com/quentin389/UserAgentInfo#usage))
+
 ### Installation
 
-**TODO:** Download the release ZIP file (once available) and install as you normally would via the WP Admin plugins page.
+:bangbang: Until I create a **release**, the only way to use this plugin is to clone it and run `composer install`.
 
 ### Configuration
 
 The following constants are available to modify behavior. They may be defined in your `wp-config.php`:
 
-- `DMD_DISABLE_GLOBAL_FUNCTIONS` - If defined as true, global functions will not be created.
+- `DMD_DISABLE_GLOBAL_FUNCTIONS` - If defined as true, [global functions](#option-2---global-functions) will not be created.
 - `DMD_DISABLE_SHORTCODES` - If defined as true, shortcodes will not be loaded. Useful if you only want this plugin to solely act as an autoloader for the [MobileDetect](http://mobiledetect.net/) PHP library.
+- `DMD_BODY_CLASS_PREFIX` - If defined as string, modifies the prefix added to device body classes. If false, disables addition of body classes. Defaults to `device`.
+- `DMD_MODIFY_WP_IS_MOBILE` - Modifies WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function to return false for tablets.
 
 #### Example Usage
 
 ```php
 define( 'DMD_DISABLE_GLOBAL_FUNCTIONS', true );
-define( 'DMD_DISABLE_SHORTCODES', true );
+define( 'DMD_DISABLE_SHORTCODES', false );
+define( 'DMD_BODY_CLASS_PREFIX', 'screen' ); // Resulting body classes: screen-mobile, screen-desktop, etc
+define( 'DMD_MODIFY_WP_IS_MOBILE', true );
 ```
 
 ## Usage
@@ -44,9 +52,9 @@ If desired, you can simply instantiate a new instance of [MobileDetect](http://m
 ```php
 $device = new \Mobile_Detect();
 
-if ( $detect->isTablet() ) {
+if( $device->isTablet() ) {
 	// Logic for tablets
-} else if( $detect->isMobile() ){
+} else if( $device->isMobile() ) {
 	// Logic for phones
 } else {
 	// Logic for desktop
@@ -55,9 +63,9 @@ if ( $detect->isTablet() ) {
 
 :rotating_light: **NB!** The `isMobile` method returns true for both phones _and_ tablets. In my example above, I check for tablets first, else if not tablet but is mobile, it is a phone. Adjust your logic as desired.
 
-### Option 2 - Use Global Functions
+### Option 2 - Global Functions
 
-In addition to WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function (which returns true for phone _and_ tablet), this function adds `wp_is_phone()` and `wp_is_tablet()`.
+To supplement WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function (which returns true for phone _and_ tablet), this plugin adds functions to specifically detect phones and tablets:
 
 ```php
 // Built-in WordPress function: Do something for phones AND tablets
@@ -65,7 +73,7 @@ if( wp_is_mobile() ) {
 	// ...
 }
 
-// Perform logic based on device type
+// Custom global functions
 if( device_is_phone() ) {
 	// ... Phones only
 } else if( device_is_tablet() ) {
@@ -75,6 +83,9 @@ if( device_is_phone() ) {
 } else {
     // ...
 }
+
+// Get device type as string
+echo 'Device type: ' . get_the_device_type(); // Device type: tablet
 ```
 
 ### Option 3 - Use Shortcodes

@@ -1,6 +1,6 @@
 {
     "prefix": "dmd",
-    "short_name": "Detect Mobile",
+    "short_name": "Detect Device",
     "dependencies": {
       "php": "5.6",
       "wp": "4.7"
