@@ -1,12 +1,17 @@
-[![Author](https://img.shields.io/badge/author-Daniel%20M.%20Hendricks-lightgrey.svg?colorB=9900cc&style=flat-square)](https://daniel.hn/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-remote-device)
+[![Author](https://img.shields.io/badge/author-Daniel%20M.%20Hendricks-lightgrey.svg?colorB=9900cc)](https://daniel.hn/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-remote-device)
 [![GitHub License](https://img.shields.io/badge/license-GPLv2-yellow.svg?style=flat-square)](https://raw.githubusercontent.com/dmhendricks/detect-remote-device/master/LICENSE)
-[![Get Flywheel](https://img.shields.io/badge/hosting-Flywheel-green.svg?style=flat-square&label=compatible&colorB=AE2A21)](https://share.getf.ly/e25g6k?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=dmhendricks%2Fdetect-remote-device)
-[![Analytics](https://ga-beacon.appspot.com/UA-126205765-1/dmhendricks/detect-remote-device?flat)](https://ga-beacon.appspot.com/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=dmhendricks%2Fdetect-remote-device)
+[![BrowserStack Status](https://www.browserstack.com/automate/badge.svg?badge_key=dmFTRkE3MlplYlB6djZyeWVyOU9XVmVEUjBqMjRpc3dXU3Z0QnM5WEhjVT0tLW9FN2tFYWkzZmdId295YjhKRC9aM3c9PQ==--1d6690824fc2a396d950cd61ec80eab2376b0c50)](https://www.browserstack.com/automate/public-build/dmFTRkE3MlplYlB6djZyeWVyOU9XVmVEUjBqMjRpc3dXU3Z0QnM5WEhjVT0tLW9FN2tFYWkzZmdId295YjhKRC9aM3c9PQ==--1d6690824fc2a396d950cd61ec80eab2376b0c50)
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/dmhendricks/detect-remote-device.svg?style=social)](https://twitter.com/danielhendricks)
 
 # Detect Remote Device Plugin for WordPress
 
 This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/) PHP library to extend `wp_is_mobile()` to exclude tablets and add device-specific filters and shortcodes. It was inspired by [Pothi Kalimuthu's](https://www.tinywp.in/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-mobile-device) [Mobile Detect](https://wordpress.org/plugins/tinywp-mobile-detect/) plugin.
+
+### Special Thanks
+
+I would like to thank [BrowserStack](http://browserstack.com/) for graciously allowing me to test this plugin's device detection on their platform. If you're looking for seamless application and browser testing  for your projects, give them a try:
+
+[![BrowserStack](https://user-images.githubusercontent.com/7760/34738829-7327ddc4-f561-11e7-97e2-2fe0474eaf05.png)](http://browserstack.com/)
 
 ## Requirements
 
@@ -116,3 +121,5 @@ This plugin adds the following shortcodes:
 
 [device_is_not type="phone"]You're NOT using a phone![/device_is_not]
 ```
+
+[![Analytics](https://ga-beacon.appspot.com/UA-126205765-1/dmhendricks/detect-remote-device?flat)](https://ga-beacon.appspot.com/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=dmhendricks%2Fdetect-remote-device)
