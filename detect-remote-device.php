@@ -167,6 +167,8 @@ if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS
           return get_the_device_type();
         case 'device':
           return $agent->device();
+        case 'platform':
+          return $agent->platform();
         default:
           return $_SERVER['HTTP_USER_AGENT'];
       }

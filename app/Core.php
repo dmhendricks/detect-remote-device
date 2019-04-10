@@ -1,5 +1,7 @@
 <?php
 namespace CloudVerve\Detect_Remote_Device;
+use DeviceDetector\DeviceDetector;
+use Jenssegers\Agent\Agent;
 
 final class Core extends Plugin {
 
@@ -50,6 +52,11 @@ final class Core extends Plugin {
     if( $device->isTablet() ) $classes[] = $class_prefix . '-tablet';
     if( $device->isMobile() && !$device->isTablet() ) $classes[] = $class_prefix . '-phone';
     if( !$device->isMobile() ) $classes[] = $class_prefix . '-desktop';
+
+    // Add platform tag
+    $dd = new DeviceDetector( $_SERVER['HTTP_USER_AGENT'] );
+    $dd->parse();
+    if( isset( $dd->getOs()['name'] ) ) $classes[] = 'platform-' . strtolower( $dd->getOs()['name'] );
 
     return is_admin() ? implode( ' ', $classes ) : $classes;
 

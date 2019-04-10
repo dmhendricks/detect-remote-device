@@ -6,11 +6,19 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit605c463976a79d9e58a350d7dea2105f
 {
+    public static $files = array (
+        '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'J' => 
         array (
             'Jenssegers\\Agent\\' => 17,
             'Jaybizzle\\CrawlerDetect\\' => 24,
+        ),
+        'D' => 
+        array (
+            'DeviceDetector\\' => 15,
         ),
         'C' => 
         array (
@@ -27,6 +35,10 @@ class ComposerStaticInit605c463976a79d9e58a350d7dea2105f
         'Jaybizzle\\CrawlerDetect\\' => 
         array (
             0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
+        ),
+        'DeviceDetector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/piwik/device-detector',
         ),
         'Composer\\Installers\\' => 
         array (
