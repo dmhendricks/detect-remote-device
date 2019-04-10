@@ -565,6 +565,7 @@ libwww
 Licorne
 Liferea\/
 Lightspeedsystems
+Lighthouse
 Likse
 Link Valet
 link_thumbnailer
@@ -1017,6 +1018,7 @@ topster
 touche\.com
 Traackr\.com
 tracemyfile
+Trackuity
 TrapitAgent
 Trendiction
 Trendsmap
@@ -1206,7 +1208,7 @@ Zemanta Aggregator
 Zend_Http_Client
 Zend\\Http\\Client
 Zermelo
-Zeus
+Zeus 
 zgrab
 ZnajdzFoto
 Zombie\.js
