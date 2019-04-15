@@ -5,11 +5,11 @@
 
 # Detect Remote Device Plugin for WordPress
 
-This WordPress plugin is uses the [MobileDetect](http://mobiledetect.net/?utm_source=github.com&utm_medium=referral&utm_content=link&utm_campaign=dmhendricks%2Fdetect-remote-device) PHP library to extend `wp_is_mobile()` to exclude tablets and add device-specific filters and shortcodes. It was inspired by [Pothi Kalimuthu's](https://www.tinywp.in/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-mobile-device) [Mobile Detect](https://wordpress.org/plugins/tinywp-mobile-detect/) plugin.
+This WordPress plugin is uses the [Agent](https://github.com/jenssegers/agent) and [DeviceDetector](https://github.com/matomo-org/device-detector) PHP libraries to extend `wp_is_mobile()` to (optionally) exclude tablets and add device-specific filters and shortcodes. It was inspired by [Pothi Kalimuthu's](https://www.tinywp.in/?utm_source=github.com&utm_medium=campaign&utm_content=button&utm_campaign=detect-mobile-device) [Mobile Detect](https://wordpress.org/plugins/tinywp-mobile-detect/) plugin.
 
 ### Special Thanks
 
-I would like to thank [BrowserStack](http://browserstack.com/) for graciously allowing me to test this plugin's device detection on their platform. If you're looking for seamless application and browser testing  for your projects, give them a try:
+I would like to thank [BrowserStack](http://browserstack.com/?utm_source=github.com&utm_medium=referral&utm_content=link&utm_campaign=dmhendricks%2Fdetect-remote-device) for graciously allowing me to test this plugin's device detection on their platform. If you're looking for seamless application and browser testing  for your projects, give them a try:
 
 [![BrowserStack](https://f001.backblazeb2.com/file/hendricks/images/github/brands/browserstack/browserstack-logo-350x98.png)](http://browserstack.com/?utm_source=github.com&utm_medium=referral&utm_content=logo&utm_campaign=dmhendricks%2Fdetect-remote-device)
 
@@ -20,19 +20,15 @@ I would like to thank [BrowserStack](http://browserstack.com/) for graciously al
 
 If you're not sure if you meet these requirements, the plugin will tell you upon activation.
 
-#### Goals for Release 0.2.0
+#### TODO
 
-- [ ] Switch to [jenssegers/agent](https://github.com/jenssegers/agent) or [matomo-org/device-detector](https://github.com/matomo-org/device-detector)
-- [ ] Add `[get_device_type]` shortcode
-- [ ] Add [OS-specific detection](https://github.com/jenssegers/agent)
+- [x] Switch from [MobileDetect](http://mobiledetect.net/) to [Agent](https://github.com/jenssegers/agent)
+- [ ] Add `[agent_is]` shortcode
+- [x] Add [OS-specific detection](https://github.com/jenssegers/agent)
 - [ ] Add additional conditionals based on user agent ([examples](https://github.com/quentin389/UserAgentInfo#usage))
-- [ ] Add querystring modifiers
-- [ ] Add support for getting device type from page headers
-- [ ] Consolidate code logic
-
-#### Future Ideas
-
-- [ ] Add support for [mobile-detect.js](https://github.com/hgoebl/mobile-detect.js)
+- [x] Add querystring modifiers
+- [x] Add support for getting device type from request headers
+- [x] Consolidate code logic
 
 ### Installation
 
@@ -43,7 +39,7 @@ Download the distributable ZIP file from the [Releases](https://github.com/dmhen
 The following constants are available to modify behavior. They may be defined in your `wp-config.php`:
 
 - `DMD_DISABLE_GLOBAL_FUNCTIONS` - If defined as true, [global functions](#option-2---global-functions) will not be created.
-- `DMD_DISABLE_SHORTCODES` - If defined as true, shortcodes will not be loaded. Useful if you only want this plugin to solely act as an autoloader for the [MobileDetect](http://mobiledetect.net/?utm_source=github.com&utm_medium=referral&utm_content=link&utm_campaign=dmhendricks%2Fdetect-remote-device) PHP library.
+- `DMD_DISABLE_SHORTCODES` - If defined as true, shortcodes will not be loaded. Useful if you only want this plugin to solely act as an autoloader for the [Agent](https://github.com/jenssegers/agent) and [DeviceDetector](https://github.com/matomo-org/device-detector) PHP libraries.
 - `DMD_BODY_CLASS_PREFIX` - If defined as string, modifies the prefix added to device body classes. If false, disables addition of body classes. Defaults to `device`.
 - `DMD_MODIFY_WP_IS_MOBILE` - Modifies WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function to return false for tablets.
 
@@ -60,10 +56,10 @@ define( 'DMD_MODIFY_WP_IS_MOBILE', true );
 
 ### Option 1 - Create MobileDetect Object
 
-If desired, you can simply instantiate a new instance of [MobileDetect](http://mobiledetect.net/?utm_source=github.com&utm_medium=referral&utm_content=link&utm_campaign=dmhendricks%2Fdetect-remote-device). See the class's documentation page for further usage examples.
+If desired, you can simply instantiate a new instance of [Agent](https://github.com/jenssegers/agent) or [DeviceDetector](https://github.com/matomo-org/device-detector). See each library's documentation for further usage examples.
 
 ```php
-$device = new \Mobile_Detect();
+$device = new \Jenssegers\Agent\Agent;
 
 if( $device->isTablet() ) {
 	// Logic for tablets
