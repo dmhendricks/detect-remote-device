@@ -92,7 +92,7 @@ class Plugin {
    */
   private function check_dependencies( $die = false ) {
 
-    $requirements = new \underDEV_Requirements( __( 'Detect Mobile Device', self::$textdomain ), [
+    $requirements = new \underDEV_Requirements( __( 'Detect Remote Device', self::$textdomain ), [
       'php'             => self::$config['dependencies']['php'],
       'wp'              => self::$config['dependencies']['wp']
     ]);
@@ -148,7 +148,6 @@ class Plugin {
 
     // Add additional string translations
     $plugin_data['translated_strings'] = [
-      __( 'Detect Remote Device', self::$textdomain ),
       __( 'Adds additional functions and shortcodes to modify output by device type - mobile, tablet or desktop.', self::$textdomain )
     ];
 

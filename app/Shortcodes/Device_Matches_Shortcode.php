@@ -1,7 +1,7 @@
 <?php
 namespace CloudVerve\Detect_Remote_Device\Shortcodes;
 use CloudVerve\Detect_Remote_Device\Plugin;
-use CloudVerve\Detect_Remote_Device\Helpers;
+use CloudVerve\Detect_Remote_Device\Core;
 
 final class Device_Matches_Shortcode extends Plugin {
 
@@ -45,15 +45,14 @@ final class Device_Matches_Shortcode extends Plugin {
     if( empty( $content ) || !$atts['type'] ) return $content;
     $atts['type'] = explode( ',', $atts['type'] );
 
-    $device = new \Mobile_Detect;
     $display_content = false;
 
     if( $shortcode_name == 'device_is' ) {
       // [device_is] match
-      if( in_array( Helpers::get_remote_device_type(), $atts['type'] ) ) $display_content = true;
+      if( in_array( Core::get_device_type(), $atts['type'] ) ) $display_content = true;
     } else {
       // [device_is_not] match
-      if( !in_array( Helpers::get_remote_device_type(), $atts['type'] ) ) $display_content = true;
+      if( !in_array( Core::get_device_type(), $atts['type'] ) ) $display_content = true;
     }
 
     return $display_content ? do_shortcode( $content ) : '';

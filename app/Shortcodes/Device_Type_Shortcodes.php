@@ -1,6 +1,7 @@
 <?php
 namespace CloudVerve\Detect_Remote_Device\Shortcodes;
 use CloudVerve\Detect_Remote_Device\Plugin;
+use Jenssegers\Agent\Agent;
 
 final class Device_Type_Shortcodes extends Plugin {
 
@@ -47,20 +48,20 @@ final class Device_Type_Shortcodes extends Plugin {
 
     if( empty( $content ) ) return $content;
 
-    $device = new \Mobile_Detect;
+    $agent = new Agent;
     $device_match = false;
 
     switch( true ) {
-      case $shortcode_name == 'device_is_mobile' && $device->isMobile():
+      case $shortcode_name == 'device_is_mobile' && $agent->isMobile():
         $device_match = true;
         break;
-      case $shortcode_name == 'device_is_phone' && $device->isMobile() && !$device->isTablet():
+      case $shortcode_name == 'device_is_phone' && $agent->isPhone():
         $device_match = true;
         break;
-      case $shortcode_name == 'device_is_tablet' && $device->isTablet():
+      case $shortcode_name == 'device_is_tablet' && $agent->isTablet():
         $device_match = true;
         break;
-      case $shortcode_name == 'device_is_desktop' && !$device->isMobile():
+      case $shortcode_name == 'device_is_desktop' && $agent->isDesktop():
         $device_match = true;
         break;
     }

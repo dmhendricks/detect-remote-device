@@ -4,7 +4,7 @@
  * Plugin Name:       Detect Remote Device
  * Plugin URI:        https://github.com/dmhendricks/detect-remote-device
  * Description:       Adds additional functions and shortcodes to modify output by device type - mobile, tablet or desktop.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Stable tag:        1.0.0
  * Requires at least: 4.7
  * Requires PHP:      5.6
@@ -17,6 +17,7 @@
  * Domain Path:       /languages
  * GitHub Plugin URI: dmhendricks/detect-remote-device
  */
+use \CloudVerve\Detect_Remote_Device\Helpers;
 ABSPATH || die();
 
 /* Copyright 2019	  Daniel M. Hendricks (https://daniel.hn/)
@@ -60,15 +61,7 @@ if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS
   if( !function_exists( 'device_is_mobile' ) ) {
 
     function device_is_mobile() {
-      switch( true ) {
-        case isset( $_GET['_device_type'] ):
-          return in_array( strtolower( $_GET['_device_type'] ), [ 'tablet', 'phone' ] );
-        case isset( $_GET['_device_is_mobile'] ):
-          return filter_var( $_GET['_device_is_mobile'], FILTER_VALIDATE_BOOLEAN );
-        default:
-          $device = new \Jenssegers\Agent\Agent;
-          return $device->isMobile();
-      }
+      return Helpers::device_is_mobile();
     }
 
   }
@@ -77,15 +70,7 @@ if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS
   if( !function_exists( 'device_is_phone' ) ) {
 
     function device_is_phone() {
-      switch( true ) {
-        case isset( $_GET['_device_type'] ):
-          return strtolower( $_GET['_device_type'] ) == 'phone';
-        case isset( $_GET['_device_is_phone'] ):
-          return filter_var( $_GET['_device_is_phone'], FILTER_VALIDATE_BOOLEAN );
-        default:
-          $device = new \Jenssegers\Agent\Agent;
-          return $device->isMobile() && !$device->isTablet();
-      }
+      return Helpers::device_is_phone();
     }
 
   }
@@ -94,15 +79,7 @@ if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS
   if( !function_exists( 'device_is_tablet' ) ) {
 
     function device_is_tablet() {
-      switch( true ) {
-        case isset( $_GET['_device_type'] ):
-          return strtolower( $_GET['_device_type'] ) == 'tablet';
-        case isset( $_GET['_device_is_tablet'] ):
-          return filter_var( $_GET['_device_is_tablet'], FILTER_VALIDATE_BOOLEAN );
-        default:
-          $device = new \Jenssegers\Agent\Agent;
-          return $device->isTablet();
-      }
+      return Helpers::device_is_tablet();
     }
 
   }
@@ -111,15 +88,7 @@ if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS
   if( !function_exists( 'device_is_desktop' ) ) {
 
     function device_is_desktop() {
-      switch( true ) {
-        case isset( $_GET['_device_type'] ):
-          return strtolower( $_GET['_device_type'] ) == 'desktop';
-        case isset( $_GET['_device_is_desktop'] ):
-          return filter_var( $_GET['_device_is_desktop'], FILTER_VALIDATE_BOOLEAN );
-        default:
-          $device = new \Jenssegers\Agent\Agent;
-          return !$device->isMobile();
-      }
+      return Helpers::device_is_desktop();
     }
 
   }
@@ -128,29 +97,7 @@ if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS
   if( !function_exists( 'get_the_device_type' ) ) {
 
     function get_the_device_type( $args = [ 'header' => null ] ) {
-
-      // Get the device type from specified header
-      if( !empty( $args['header'] ) && is_string( $args['header'] ) ) {
-        $args['header'] = 'HTTP_' . strtoupper( str_replace( '-', '_', trim( $args['header'] ) ) );
-
-        if( !empty( $_SERVER[ $args['header'] ] ) ) {
-          $device_type = strtolower( $_SERVER[ $args['header'] ] );
-          return $args['header'] != 'HTTP_CF_DEVICE_TYPE' ? $device_type : str_replace( 'mobile', 'phone', $device_type );
-        }
-      }
-
-      // Otherwise, use built-in functions
-      switch( true ) {
-        case !empty( $_GET['_device_type'] ):
-          return strtolower( $_GET['_device_type'] );
-        case device_is_tablet():
-          return 'tablet';
-        case device_is_phone():
-          return 'phone';
-        default:
-          return 'desktop';
-      }
-
+      return Helpers::get_device_type( $args );
     }
 
   }
@@ -159,20 +106,7 @@ if( !( defined( 'DMD_DISABLE_GLOBAL_FUNCTIONS' ) && DMD_DISABLE_GLOBAL_FUNCTIONS
   if( !function_exists( 'get_user_agent' ) ) {
 
     function get_user_agent( $key = null ) {
-
-      $agent = new \Jenssegers\Agent\Agent;
-
-      switch( $key ) {
-        case 'type':
-          return get_the_device_type();
-        case 'device':
-          return $agent->device();
-        case 'platform':
-          return $agent->platform();
-        default:
-          return $_SERVER['HTTP_USER_AGENT'];
-      }
-
+      return Helpers::get_user_agent( $key );
     }
 
   }
