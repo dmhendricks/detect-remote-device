@@ -146,7 +146,8 @@ final class Helpers extends Plugin {
       case 'name':
         return $agent->device();
       case 'os':
-        return $device->getOs();
+        $os = $device->getOs();
+        return isset( $os['name'] ) ? $os['name'] : null;
       case 'bot':
         return $device->isBot() ? $device->getBot() : false;
       default:
