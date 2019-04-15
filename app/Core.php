@@ -77,7 +77,8 @@ final class Core extends Plugin {
       $device = new DeviceDetector( $_SERVER['HTTP_USER_AGENT'] );
       $device->discardBotInformation();
       $device->parse();
-      if( isset( $device->getOs()['name'] ) ) $classes[] = $class_prefix . '-' . sanitize_title( $device->getOs()['name'] );
+      $os_name = isset( $device->getOs()['name'] ) ? sanitize_title( $device->getOs()['name'] ) : 'unknown';
+      $classes[] = $class_prefix . '-' . $os_name = $os_name == 'mac' ? 'osx' : $os_name;
     }
 
     return is_admin() ? implode( ' ', $classes ) : $classes;
