@@ -64,24 +64,28 @@ final class Core extends Plugin {
 
     // Add device body class tags
     if( !( defined( 'DMD_ADD_DEVICE_TYPE_BODY_CLASSES' ) && !DMD_ADD_DEVICE_TYPE_BODY_CLASSES ) ) {
+
       $agent = new Agent;
       if( $agent->isMobile() ) $classes[] = $class_prefix . '-mobile';
       if( $agent->isTablet() ) $classes[] = $class_prefix . '-tablet';
       if( $agent->isPhone() ) $classes[] = $class_prefix . '-phone';
       if( $agent->isDesktop() ) $classes[] = $class_prefix . '-desktop';  
+
     }
 
     // Add operating system tag
     if( defined( 'DMD_ADD_PLATFORM_BODY_CLASSES' ) && DMD_ADD_PLATFORM_BODY_CLASSES ) {
+
       $agent = $agent ?: new Agent;
       $device = new DeviceDetector( $_SERVER['HTTP_USER_AGENT'] );
       $device->discardBotInformation();
       $device->parse();
       $device_name = sanitize_title( $agent->device() );
       $device_name = $device_name == 'webkit' ? sanitize_title( $device->getBrandName() ) : $device_name;
-      $classes[] = $class_prefix . '-' . $device_name;
-      $os_name = isset( $device->getOs()['name'] ) ? sanitize_title( $device->getOs()['name'] ) : 'unknown';
-      $classes[] = $class_prefix . '-' . $os_name = $os_name == 'mac' ? 'osx' : $os_name;
+      if( $device_name ) $classes[] = $class_prefix . '-' . $device_name;
+      $os_name = isset( $device->getOs()['name'] ) ? sanitize_title( $device->getOs()['name'] ) : null;
+      if( $os_name ) $classes[] = $class_prefix . '-' . ( $os_name == 'mac' ? 'macos' : $os_name );
+
     }
 
     return is_admin() ? implode( ' ', $classes ) : $classes;

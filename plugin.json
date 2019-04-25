@@ -1,6 +1,11 @@
 {
     "prefix": "dmd",
     "short_name": "Detect Device",
+    "default": {
+      "device": {
+        "type": "desktop"
+      }
+    },
     "dependencies": {
       "php": "5.6",
       "wp": "4.7"
