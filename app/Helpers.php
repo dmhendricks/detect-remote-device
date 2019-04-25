@@ -122,7 +122,7 @@ final class Helpers extends Plugin {
         return 'desktop';
     }
 
-    return 'unknown';
+    return 'desktop';
 
   }
 
