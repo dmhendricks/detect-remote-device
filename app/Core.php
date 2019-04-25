@@ -69,7 +69,7 @@ final class Core extends Plugin {
       if( $agent->isMobile() ) $classes[] = $class_prefix . '-mobile';
       if( $agent->isTablet() ) $classes[] = $class_prefix . '-tablet';
       if( $agent->isPhone() ) $classes[] = $class_prefix . '-phone';
-      if( $agent->isDesktop() ) $classes[] = $class_prefix . '-desktop';  
+      if( $agent->isDesktop() || !$agent->isMobile() ) $classes[] = $class_prefix . '-desktop';
 
     }
 
