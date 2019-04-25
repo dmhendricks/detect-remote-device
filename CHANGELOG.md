@@ -12,6 +12,7 @@
 - Added: Querystring modifiers
 - Added: Ability to fetch device type from specified request headers
 - Changed: Dependency [Mobile_Detect](http://mobiledetect.net/?utm_source=github.com&utm_medium=referral&utm_content=link&utm_campaign=dmhendricks%2Fdetect-remote-device) to [Agent](https://github.com/jenssegers/agent)
+- Added: Optional device and OS body class strings
 - Changed: Consolidated device detection code
 
 ### 0.1.0-alpha

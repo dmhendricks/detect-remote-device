@@ -11,7 +11,7 @@ This WordPress plugin is uses the [Agent](https://github.com/jenssegers/agent) a
 
 I would like to thank [BrowserStack](http://browserstack.com/?utm_source=github.com&utm_medium=referral&utm_content=link&utm_campaign=dmhendricks%2Fdetect-remote-device) for graciously allowing me to test this plugin's device detection on their platform. If you're looking for seamless application and browser testing  for your projects, give them a try:
 
-[![BrowserStack](https://f001.backblazeb2.com/file/hendricks/images/github/brands/browserstack/browserstack-logo-350x98.png)](http://browserstack.com/?utm_source=github.com&utm_medium=referral&utm_content=logo&utm_campaign=dmhendricks%2Fdetect-remote-device)
+[![App and Browser Testing Made Easy](https://f001.backblazeb2.com/file/hendricks/images/github/brands/browserstack/browserstack-logo-350x98.png)](http://browserstack.com/?utm_source=github.com&utm_medium=referral&utm_content=logo&utm_campaign=dmhendricks%2Fdetect-remote-device)
 
 ## Requirements
 
@@ -22,13 +22,10 @@ If you're not sure if you meet these requirements, the plugin will tell you upon
 
 #### TODO
 
-- [x] Switch from [MobileDetect](http://mobiledetect.net/) to [Agent](https://github.com/jenssegers/agent)
-- [ ] Add `[agent_is]` shortcode
 - [x] Add [OS-specific detection](https://github.com/jenssegers/agent)
-- [ ] Add additional conditionals based on user agent ([examples](https://github.com/quentin389/UserAgentInfo#usage))
+- [ ] Add `[browser_agent_is]` shortcode
 - [x] Add querystring modifiers
 - [x] Add support for getting device type from request headers
-- [x] Consolidate code logic
 
 ### Installation
 
@@ -40,7 +37,9 @@ The following constants are available to modify behavior. They may be defined in
 
 - `DMD_DISABLE_GLOBAL_FUNCTIONS` - If defined as true, [global functions](#option-2---global-functions) will not be created.
 - `DMD_DISABLE_SHORTCODES` - If defined as true, shortcodes will not be loaded. Useful if you only want this plugin to solely act as an autoloader for the [Agent](https://github.com/jenssegers/agent) and [DeviceDetector](https://github.com/matomo-org/device-detector) PHP libraries.
-- `DMD_BODY_CLASS_PREFIX` - If defined as string, modifies the prefix added to device body classes. If false, disables addition of body classes. Defaults to `device`.
+- `DMD_ADD_DEVICE_TYPE_BODY_CLASSES` - Add device type body classes (default: true)
+- `DMD_ADD_PLATFORM_BODY_CLASSES` - Add remote platform/OS body classes (default: false)
+- `DMD_BODY_CLASS_PREFIX` - If defined, modifies the prefix added to device body classes.
 - `DMD_MODIFY_WP_IS_MOBILE` - Modifies WordPress's built-in [`wp_is_mobile()`](https://codex.wordpress.org/Function_Reference/wp_is_mobile) function to return false for tablets.
 
 #### Configuration Examples
@@ -48,6 +47,8 @@ The following constants are available to modify behavior. They may be defined in
 ```php
 define( 'DMD_DISABLE_GLOBAL_FUNCTIONS', true );
 define( 'DMD_DISABLE_SHORTCODES', false );
+define( 'DMD_ADD_DEVICE_TYPE_BODY_CLASSES', false );
+define( 'DMD_ADD_PLATFORM_BODY_CLASSES', true );
 define( 'DMD_BODY_CLASS_PREFIX', 'screen' ); // Resulting body classes: screen-mobile, screen-desktop, etc
 define( 'DMD_MODIFY_WP_IS_MOBILE', true );
 ```
